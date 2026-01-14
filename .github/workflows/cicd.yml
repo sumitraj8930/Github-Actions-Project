@@ -43,7 +43,7 @@ jobs:
           sudo tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
 
       - name: Gitleaks Scan
-        run: gitleaks detect --source . --report-path gitleaks-report.json --format json
+        run: gitleaks detect source . --report-path gitleaks-report.json --format json
 
       - name: Upload Reports
         uses: actions/upload-artifact@v4

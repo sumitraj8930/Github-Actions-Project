@@ -38,8 +38,9 @@ jobs:
 
       - name: Install Gitleaks (Binary non-interactive)
         run: |
-          wget -q "$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | grep browser_download_url | grep linux_amd64.tar.gz | cut -d '\"' -f 4)"
-          tar -xf gitleaks_*_linux_amd64.tar.gz
+          LATEST=$(curl -s https://api.github.com/repos/gitleaks/gitleaks/releases/latest | grep "browser_download_url" | grep "linux_amd64.tar.gz" | head -n 1 | awk -F '"' '{print $4}')
+          wget -q $LATEST
+          tar -xf gitleaks*linux_amd64.tar.gz
           sudo mv gitleaks /usr/local/bin/
           gitleaks --version
 
